@@ -1,0 +1,9 @@
+@tailwind base;
+body {
+  @apply font-IRANYekan;
+  @apply bg-gray-200;
+  @apply text-gray-700;
+}
+@tailwind components;
+
+@tailwind utilities;
