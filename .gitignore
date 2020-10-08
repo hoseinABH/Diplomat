@@ -3,12 +3,15 @@ node_modules
 node_modules/
 /.pnp
 .pnp.js
+/client/src/styles/tailwind.css
 
 # testing
 /coverage
 
 # production
 /client/build
+
+
 
 # misc
 .DS_Store
