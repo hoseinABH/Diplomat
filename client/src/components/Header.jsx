@@ -4,12 +4,31 @@ import logo from '../assets/images/logo.png';
 import cart from '../assets/images/cart.png';
 const Header = () => {
   const [term, setTerm] = React.useState('');
+  const [showNavbar, setShowNavbar] = React.useState(true);
+
+  React.useEffect(() => {
+    let prevScrollpos = window.pageYOffset;
+    window.addEventListener('scroll', () => {
+      let currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(false);
+      }
+      prevScrollpos = currentScrollPos;
+    });
+  }, [setShowNavbar, showNavbar]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     alert(term + 'Submited');
   };
   return (
-    <header className="flex sm:fixed overflow-hidden  bg-white w-full  sm:px-4 sm:py-3 flex-col items-center  sm:flex-row  justify-center    sm:flex  sm:justify-between   ">
+    <header
+      className={`flex sm:fixed top-0  transition-all ease-in-out shadow-lg duration-700 overflow-hidden bg-white w-full  sm:px-4 sm:py-3 flex-col items-center  sm:flex-row justify-center sm:flex  sm:justify-between ${
+        showNavbar ? 'opacity-100' : 'opacity-0'
+      }`}
+    >
       <div className="flex items-center flex-col sm:flex-row   w-full  px-4 py-3 sm:p-0  sm:w-2/4">
         <Link to="/" className="align-center sm:text-center">
           <img src={logo} alt="diplomat" />
