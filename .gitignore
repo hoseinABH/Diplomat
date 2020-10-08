@@ -1,9 +1,7 @@
 # dependencies
-node_modules
 node_modules/
 /.pnp
 .pnp.js
-/client/src/styles/tailwind.css
 
 # testing
 /coverage
