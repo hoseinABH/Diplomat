@@ -25,7 +25,7 @@ const Header = () => {
   };
   return (
     <header
-      className={`flex sm:fixed top-0  transition-all ease-in-out shadow-lg duration-700 overflow-hidden bg-white w-full  sm:px-4 sm:py-3 flex-col items-center  sm:flex-row justify-center sm:flex  sm:justify-between ${
+      className={`flex z-50 sm:fixed top-0  transition-all ease-in-out shadow-lg duration-700 overflow-hidden bg-white w-full  sm:px-4 sm:py-3 flex-col items-center  sm:flex-row justify-center sm:flex  sm:justify-between ${
         showNavbar ? 'opacity-100' : 'opacity-0'
       }`}
     >
