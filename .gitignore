@@ -10,7 +10,6 @@ node_modules/
 /client/build
 
 #client
-/client/src/styles/tailwind.css
 
 # misc
 .DS_Store
