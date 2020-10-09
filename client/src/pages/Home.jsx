@@ -16,9 +16,16 @@ const Home = () => {
         </div>
       </div>
       <Layout>
-        {cards.map((item) => (
-          <Card key={item} />
-        ))}
+        <div className="flex  px-6 flex-col flex-wrap pt-6 justify-center">
+          <h1 className=" text-black font-semibold text-lg">آخرین محصولات</h1>
+          <div className=" w-32 h-little bg-red-100 mt-2"></div>
+        </div>
+
+        <div className="flex flex-row flex-wrap">
+          {cards.map((item) => (
+            <Card key={item} />
+          ))}
+        </div>
       </Layout>
     </>
   );
