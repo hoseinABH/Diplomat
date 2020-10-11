@@ -131,7 +131,7 @@ const Footer = () => {
     <footer className="mt-12">
       <hr />
       <div
-        className="flex items-center my-4 justify-center"
+        className="flex items-center my-4 justify-center select-none"
         onClick={scrollTop}
       >
         <span className="text-xl font-bold cursor-pointer pl-2">
