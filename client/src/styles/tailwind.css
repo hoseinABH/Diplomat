@@ -10425,7 +10425,7 @@ body {
 }
 
 .text-sm {
-  font-size: 0.875rem;
+  font-size: 0.755rem;
 }
 
 .text-base {
@@ -32015,7 +32015,7 @@ body {
   }
 
   .sm\:text-sm {
-    font-size: 0.875rem;
+    font-size: 0.755rem;
   }
 
   .sm\:text-base {
@@ -53540,7 +53540,7 @@ body {
   }
 
   .md\:text-sm {
-    font-size: 0.875rem;
+    font-size: 0.755rem;
   }
 
   .md\:text-base {
@@ -75065,7 +75065,7 @@ body {
   }
 
   .lg\:text-sm {
-    font-size: 0.875rem;
+    font-size: 0.755rem;
   }
 
   .lg\:text-base {
@@ -96590,7 +96590,7 @@ body {
   }
 
   .xl\:text-sm {
-    font-size: 0.875rem;
+    font-size: 0.755rem;
   }
 
   .xl\:text-base {

@@ -128,7 +128,7 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <footer className="mt-12">
+    <footer className="mt-4 sm:mt-16">
       <hr />
       <div
         className="flex items-center my-4 justify-center select-none"
@@ -141,14 +141,14 @@ const Footer = () => {
           width="24"
           height="24"
           xmlns="http://www.w3.org/2000/svg"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           className="fill-current cursor-pointer"
         >
           <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 15l-5.247-6.44-5.263 6.44-.737-.678 6-7.322 6 7.335-.753.665z" />
         </svg>
       </div>
-      <div className="w-full border-t border-gray-400 hidden md:flex  justify-center  py-8 bg-gray-300  border-b">
+      <div className="w-full border-t border-gray-400 hidden md:flex  justify-center  py-8  bg-gray-300  border-b">
         {items.map((item) => (
           <div
             key={item.id}
@@ -160,7 +160,7 @@ const Footer = () => {
         ))}
         <hr />
       </div>
-      <div className="flex w-full items-start h-full px-8 py-6 md:bg-gray-300 flex-col-reverse md:flex-row ">
+      <div className="flex w-full items-start h-full px-8 py-6 md:bg-gray-300 flex-col-reverse md:flex-row pb-24 md:pb-6">
         <div className="flex h-full w-full md:w-4/6 justify-around flex-row ">
           <div className="flex flex-col items-start">
             <Link
@@ -215,25 +215,24 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className=" h-full w-full md:w-2/6 flex-col space-y-8 flex  items-center">
-          <div>
-            <p className="text-sm">
-              از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید:
-            </p>
-            <form className="flex flex-col md:flex-row max-w-screen-lg pt-6 ">
-              <input
-                className="w-full md:w-56 border bg-gray-300 md:border-l-0 border-gray-500 rounded-md md:rounded-l-none text-sm px-4 py-2 focus:outline-none"
-                type="email"
-                placeholder="آدرس ایمیل خود را وارد کنید"
-              />
-              <button
-                onClick={(e) => e.preventDefault()}
-                className="mt-4 md:mt-0 bg-red-100 rounded-md  md:rounded-r-none px-4 py-2 border-none text-sm text-white focus:outline-none"
-              >
-                ارسال
-              </button>
-            </form>
-          </div>
+        <div className="h-full w-full md:w-2/6 flex-col space-y-8 flex  items-center self-center">
+          <p className="text-sm">
+            از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر شوید:
+          </p>
+          <form className="flex flex-col md:flex-row min-w-full md:w-full pt-6 ">
+            <input
+              className=" md:w-56 border bg-gray-300 md:border-l-0 border-gray-400 rounded-md md:rounded-l-none text-sm px-4 py-2 focus:outline-none"
+              type="email"
+              placeholder="آدرس ایمیل خود را وارد کنید"
+            />
+            <button
+              onClick={(e) => e.preventDefault()}
+              className="mt-4 md:mt-0 bg-red-100 rounded-md  md:rounded-r-none px-4 py-2 border-none text-sm text-white focus:outline-none"
+            >
+              ارسال
+            </button>
+          </form>
+
           <div className=" pb-16 md:mb-0 ">
             <p className="text-sm">
               دیپلمات را در شبکه‌های اجتماعی دنبال کنید:
@@ -241,6 +240,7 @@ const Footer = () => {
             <div className="flex pt-6 justify-center md:justify-start">
               {social.map((item) => (
                 <img
+                  key={item.id}
                   className="hover:opacity-75 w-6 h-6 ml-6  hover:text-blue-500 cursor-pointer"
                   src={item.src}
                   alt={item.alt}

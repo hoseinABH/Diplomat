@@ -17,7 +17,7 @@ const Header = () => {
       }
       prevScrollpos = currentScrollPos;
     });
-  }, [setShowNavbar, showNavbar]);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
