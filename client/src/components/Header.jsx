@@ -4,9 +4,10 @@ import logo from '../assets/images/logo.png';
 import cart from '../assets/images/cart.png';
 const Header = () => {
   const [term, setTerm] = React.useState('');
-  const [showNavbar, setShowNavbar] = React.useState(true);
+  const [showNavbar, setShowNavbar] = React.useState(null);
 
   React.useEffect(() => {
+    setShowNavbar(true);
     let prevScrollpos = window.pageYOffset;
     window.addEventListener('scroll', () => {
       let currentScrollPos = window.pageYOffset;

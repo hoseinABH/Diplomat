@@ -17,7 +17,7 @@ const ProductDetails = () => {
           <div className="mt-12 w-full md:w-1/3  order-2 md:order-1 flex flex-col items-center md:items-start">
             <img className="w-64 h-64" src={product} alt="product" />
 
-            <p className="text-sm mt-6 block md:hidden leading-6 font-hairline text-gray-900">
+            <p className="text-sm mt-6 text-justify block md:hidden leading-6 font-hairline text-gray-900">
               سامسونگ گوشی جدید سری A خود را با نام «A31» در تاریخ 27 آوریل 2020
               معرفی کرد. این سری از تولیدات سامسونگ به داشتن صفحه‌نمایش بسیار با
               کیفیت AMOLED و دوربین‌هایی با امکانات بالا شهرت دارند. گوشی موبایل

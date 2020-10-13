@@ -38,22 +38,19 @@ const Carousel = () => {
   SwiperCore.use([Pagination, Scrollbar, EffectFade, Autoplay]);
 
   return (
-    <>
-      <Swiper
-        autoplay={{ delay: 3000 }}
-        loop={true}
-        pagination={{ clickable: true }}
-        effect="fade"
-        id="main"
-        className="rounded-lg "
-      >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <img src={slide.src} alt={slide.alt} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+    <Swiper
+      autoplay={{ delay: 3000 }}
+      loop={true}
+      pagination={{ clickable: true }}
+      effect="fade"
+      id="main"
+    >
+      {slides.map((slide) => (
+        <SwiperSlide key={slide.id}>
+          <img className="rounded-lg" src={slide.src} alt={slide.alt} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
