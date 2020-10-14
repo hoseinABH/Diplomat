@@ -1,11 +1,21 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { listProducts } from '../redux/actions/productActions';
 import Card from '../components/Card';
 import Layout from '../components/Layout';
 import Carousel from '../components/Carousel';
 import AdsGif from '../components/AdsGif';
 import ConditionSection from '../components/ConditionSection';
+import CardSkeleton from '../components/CardSkeleton';
 const Home = () => {
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  const productList = useSelector((state) => state.productList);
+  const skeletonNum = [1, 2, 3, 4, 5, 6, 7, 8];
+  const { loading, error, products } = productList;
   return (
     <>
       <div className="h-full  w-full flex items-start flex-col md:flex-row sm:pt-20 p-2 sm:p-0 ">
@@ -27,9 +37,11 @@ const Home = () => {
         </div>
 
         <div className="flex flex-row flex-wrap  mt-4 sm:mt-8  bg-white pb-16  justify-center mx-3 sm:mx-4 rounded-md">
-          {cards.map((item) => (
-            <Card key={item} />
-          ))}
+          {loading
+            ? skeletonNum.map((item) => <CardSkeleton key={item} />)
+            : products.map((product) => (
+                <Card key={product._id} product={product} />
+              ))}
         </div>
       </Layout>
     </>

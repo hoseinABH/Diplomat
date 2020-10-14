@@ -2,6 +2,8 @@ import { actionTypes } from '../types/productTypes';
 
 const intialState = {
   products: [],
+  loading: false,
+  errors: [],
 };
 
 export const productReducer = (state = intialState, action) => {

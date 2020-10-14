@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import product from '../assets/images/product.jpg';
 import star from '../assets/images/star.png';
 import store from '../assets/images/store.png';
 import quality from '../assets/images/quality.png';
@@ -8,14 +7,14 @@ import stock from '../assets/images/stock.png';
 const ProductDetails = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   const [inStock] = React.useState(true);
   return (
     <Layout>
       <div className="mt-6 sm:mt-24 bg-white mx-2 border border-gray-300">
         <div className="flex flex-col md:flex-row w-full pt-8 pb-24 items-center  px-3">
           <div className="mt-12 w-full md:w-1/3  order-2 md:order-1 flex flex-col items-center md:items-start">
-            <img className="w-64 h-64" src={product} alt="product" />
+            <img className="w-64 h-64" src="#" alt="product" />
 
             <p className="text-sm mt-6 text-justify block md:hidden leading-6 font-hairline text-gray-900">
               سامسونگ گوشی جدید سری A خود را با نام «A31» در تاریخ 27 آوریل 2020
