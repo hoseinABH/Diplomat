@@ -71,19 +71,15 @@ const ProductDetails = () => {
                         alt="quality"
                         className="w-5 h-5 ml-4"
                       />
-                      <div className="flex flex-col">
-                        <p className="text-sm text-gray-900">
-                          گارانتی ۱۸ ماهه ایده پردازان تجارت خاورمیانه
-                        </p>
-                      </div>
+                      <p className="text-sm text-gray-900">
+                        گارانتی ۱۸ ماهه ایده پردازان تجارت خاورمیانه
+                      </p>
                     </div>
                     <div className="flex  items-center mt-6">
                       <img src={stock} alt="stock" className="w-5 h-5 ml-4" />
-                      <div className="flex flex-col">
-                        <p className="text-sm text-gray-900">
-                          موجود در انبار دیپلمات
-                        </p>
-                      </div>
+                      <p className="text-sm text-gray-900">
+                        موجود در انبار دیپلمات
+                      </p>
                     </div>
                     <div className="flex items-center self-end mt-6 text-red-100 font-bold">
                       <span className="text-2xl">{product.price}</span>

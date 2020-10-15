@@ -33,20 +33,20 @@ const ProductDetailSkeleton = () => {
           <div className="lg:w-1/3 hidden md:flex lg:block order-1 md:order-3 w-1/2">
             <div className="flex flex-col px-4 py-5  ml-6 mr-16 rounded-lg border border-gray-300  ">
               <div className="flex items-center">
-                <div class="rounded-full bg-gray-400 h-8 w-8"></div>
+                <div className="rounded-full bg-gray-400 h-8 w-8"></div>
                 <div className="flex flex-col mr-3">
                   <div className="bg-gray-400 w-40 h-3 rounded"></div>
                   <div className="bg-gray-400 w-32 h-3 rounded mt-1"></div>
                 </div>
               </div>
               <div className="flex items-center mt-6 border border-gray-300 py-4 border-l-0 border-r-0">
-                <div class="rounded-full bg-gray-400 h-8 w-8"></div>
+                <div className="rounded-full bg-gray-400 h-8 w-8"></div>
                 <div className="mr-3">
                   <div className="bg-gray-400 w-40 h-3 rounded"></div>
                 </div>
               </div>
               <div className="flex items-center mt-6">
-                <div class="rounded-full bg-gray-400 h-8 w-8"></div>
+                <div className="rounded-full bg-gray-400 h-8 w-8"></div>
                 <div className="mr-3">
                   <div className="bg-gray-400 w-40 h-3 rounded"></div>
                 </div>
