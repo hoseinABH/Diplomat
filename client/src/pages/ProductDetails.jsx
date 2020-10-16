@@ -6,12 +6,13 @@ import quality from '../assets/images/quality.png';
 import stock from '../assets/images/stock.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProductDetails } from '../redux/actions/productActions';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Message from '../components/Message';
 import ProductDetailSkeleton from '../components/ProductDetailSkeleton';
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const history = useHistory();
   React.useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(listProductDetails(id));
@@ -19,6 +20,10 @@ const ProductDetails = () => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, errors, product } = productDetails;
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${id}`);
+  };
   return (
     <Layout>
       {loading ? (
@@ -85,13 +90,19 @@ const ProductDetails = () => {
                       <span className="text-2xl">{product.price}</span>
                       <p className="mr-2">تومان</p>
                     </div>
-                    <button className="mt-4 bg-red-100 text-md text-white p-4 rounded-lg focus:outline-none">
+                    <button
+                      onClick={addToCartHandler}
+                      className="mt-4 bg-red-100 text-md text-white p-4 rounded-lg focus:outline-none"
+                    >
                       افزودن به سبد خرید
                     </button>
                   </div>
                 </div>
                 <div className="w-screen bg-white px-2 pb-1 flex  fixed bottom-0  md:hidden  justify-center ">
-                  <button className="mt-4 mx-24 min-w-full bg-red-100 text-md text-white p-4 rounded-lg focus:outline-none">
+                  <button
+                    onClick={addToCartHandler}
+                    className="mt-4 mx-24 min-w-full bg-red-100 text-md text-white p-4 rounded-lg focus:outline-none"
+                  >
                     افزودن به سبد خرید
                   </button>
                 </div>

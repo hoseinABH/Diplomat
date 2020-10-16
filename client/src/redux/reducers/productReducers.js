@@ -1,18 +1,18 @@
-import { actionTypes } from '../types/productTypes';
+import { productTypes } from '../types/productTypes';
 
 export const productReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    case actionTypes.productListRequest:
+    case productTypes.productListRequest:
       return {
         loading: true,
         products: [],
       };
-    case actionTypes.productListSuccess:
+    case productTypes.productListSuccess:
       return {
         loading: false,
         products: action.payload,
       };
-    case actionTypes.productListFailure:
+    case productTypes.productListFailure:
       return {
         loading: false,
         errors: action.payload,
@@ -27,17 +27,17 @@ export const productDetailReducer = (
   action
 ) => {
   switch (action.type) {
-    case actionTypes.productDetailsRequest:
+    case productTypes.productDetailsRequest:
       return {
         loading: true,
         product: {},
       };
-    case actionTypes.productDetailsSuccess:
+    case productTypes.productDetailsSuccess:
       return {
         loading: false,
         product: action.payload,
       };
-    case actionTypes.productDetailsFailure:
+    case productTypes.productDetailsFailure:
       return {
         loading: false,
         errors: action.payload,

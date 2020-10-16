@@ -1,4 +1,4 @@
-export const actionTypes = {
+export const productTypes = {
   // Product List
   productListRequest: 'PRODUCT_LIST_REQUEST',
   productListSuccess: 'PRODUCT_LIST_SUCCESS',

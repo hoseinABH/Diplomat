@@ -1,15 +1,15 @@
 import axios from 'axios';
-import { actionTypes } from '../types/productTypes';
+import { productTypes } from '../types/productTypes';
 
 export const listProducts = () => async (dispatch) => {
   try {
-    dispatch({ type: actionTypes.productListRequest });
+    dispatch({ type: productTypes.productListRequest });
     const { data } = await axios.get('/api/products');
 
-    dispatch({ type: actionTypes.productListSuccess, payload: data });
+    dispatch({ type: productTypes.productListSuccess, payload: data });
   } catch (error) {
     dispatch({
-      type: actionTypes.productListFailure,
+      type: productTypes.productListFailure,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -19,13 +19,13 @@ export const listProducts = () => async (dispatch) => {
 };
 export const listProductDetails = (id) => async (dispatch) => {
   try {
-    dispatch({ type: actionTypes.productDetailsRequest });
+    dispatch({ type: productTypes.productDetailsRequest });
     const { data } = await axios.get(`/api/products/${id}`);
 
-    dispatch({ type: actionTypes.productDetailsSuccess, payload: data });
+    dispatch({ type: productTypes.productDetailsSuccess, payload: data });
   } catch (error) {
     dispatch({
-      type: actionTypes.productDetailsFailure,
+      type: productTypes.productDetailsFailure,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
