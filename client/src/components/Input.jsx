@@ -7,7 +7,7 @@ const Input = ({ name, type, value, onChange }) => {
       value={value}
       name={name}
       onChange={onChange}
-      className="border border-gray-300 rounded-lg  w-full focus:outline-none h-10 p-2 focus:border-red-100"
+      className="border my-1 border-gray-300 rounded-lg  w-full focus:outline-none h-10 p-2 focus:border-red-100"
     />
   );
 };

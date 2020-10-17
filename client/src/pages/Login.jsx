@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
+import Button from '../components/Button';
+import Input from '../components/Input';
+import InputLabel from '../components/InputLabel';
 const Login = () => {
   return (
     <div className="flex w-full h-screen justify-center items-center  bg-white">
@@ -9,21 +12,14 @@ const Login = () => {
           <Link to="/">
             <img src={logo} alt="diplomat" />
           </Link>
-          <div className="mt-6 mb-4 flex flex-col self-start">
-            <h1 className="text-xl font-bold  flex-grow">ورود</h1>
-            <p className=" mt-1 text-xs font-hairline">
-              لطفا پست الکترونیک خود را وارد کنید
-            </p>
-          </div>
-          <input
-            type="email"
-            name="email"
-            className="border border-gray-300 rounded-lg  w-full focus:outline-none h-10 p-2 focus:border-red-100"
-          />
-
-          <button className="w-full bg-red-100 text-white rounded-lg text-sm py-3 px-16  my-6 focus:outline-none">
-            ورود به دیپلمات
-          </button>
+          <h1 className="text-xl font-bold  flex-grow mt-6 mb-4  flex flex-col self-start">
+            ورود
+          </h1>
+          <InputLabel>پست الکترونیک</InputLabel>
+          <Input type="email" name="email" />
+          <InputLabel>کلمه عبور</InputLabel>
+          <Input type="password" name="password" />
+          <Button>ورود به دیپلمات</Button>
           <p className="text-xs font-hairline text-center leading-5">
             با ورود و یا{' '}
             <Link to="/register" className="text-red-100 font-extrabold">
