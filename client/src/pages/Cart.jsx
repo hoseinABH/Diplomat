@@ -44,7 +44,7 @@ const Cart = () => {
     <Layout>
       {cartItems.length === 0 ? (
         <div className="h-full">
-          <div className="py-10 px-3 bg-white border-gray-300 rounded flex items-center flex-col justify-center mb-20 mt-8 sm:mt-40 mx-6">
+          <div className="py-10 px-3 bg-white border-gray-300 rounded flex items-center flex-col justify-center mb-20 mt-8 sm:mt-32 mx-6">
             <img
               src={basket}
               alt="basket"
