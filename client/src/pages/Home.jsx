@@ -9,13 +9,10 @@ import ConditionSection from '../components/ConditionSection';
 import CardSkeleton from '../components/CardSkeleton';
 import Message from '../components/Message';
 const Home = () => {
-  const [alertState, toggleAlert] = React.useState(true);
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(listProducts());
-
-    setTimeout(() => toggleAlert(false), 2000);
-  }, [dispatch, toggleAlert]);
+  }, [dispatch]);
 
   const productList = useSelector((state) => state.productList);
   const skeletonNum = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -43,7 +40,7 @@ const Home = () => {
         </div>
 
         {errors ? (
-          <Message variant="Error" alertState={alertState}>
+          <Message variant="Error" timer={3000}>
             {errors}
           </Message>
         ) : (

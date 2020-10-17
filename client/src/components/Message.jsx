@@ -1,6 +1,18 @@
 import React from 'react';
 
-const Message = ({ variant, children, alertState }) => {
+const Message = ({ variant, children, timer }) => {
+  const [alertState, setAlertState] = React.useState(true);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if (alertState) {
+        setAlertState(!alertState);
+      }
+    }, timer);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [alertState, setAlertState, timer]);
   return (
     <div
       className={`flex fixed bottom-0 mb-6 w-full  sm:w-auto  z-50 transition-opacity duration-500  items-center rounded-md ${
