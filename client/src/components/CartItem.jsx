@@ -5,9 +5,11 @@ import quality from '../assets/images/quality.png';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/actions/cartActions';
+import Modal from './Modal';
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
+  const [isOpen, toggleModal] = React.useState(false);
 
   return (
     <div className="flex  items-start rounded-lg border py-10 px-3 bg-white border-gray-300">
@@ -56,7 +58,7 @@ const CartItem = ({ item }) => {
               ))}
             </select>
             <div
-              onClick={() => dispatch(removeFromCart(item.product))}
+              onClick={() => toggleModal(true)}
               className="flex mr-4 cursor-pointer"
             >
               <img src={deleteIcon} alt="delete" className="h-4 w-4" />
@@ -69,6 +71,13 @@ const CartItem = ({ item }) => {
           </div>
         </div>
       </div>
+      <Modal
+        onConfirm={() => dispatch(removeFromCart(item.product))}
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+      >
+        آیا مایل به حذف این کالا هستید ؟
+      </Modal>
     </div>
   );
 };
