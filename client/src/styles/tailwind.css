@@ -10405,7 +10405,7 @@ body {
 }
 
 .h-little {
-  height: 1px;
+  height: 1.85px;
 }
 
 .h-px {
@@ -31995,7 +31995,7 @@ body {
   }
 
   .sm\:h-little {
-    height: 1px;
+    height: 1.85px;
   }
 
   .sm\:h-px {
@@ -53520,7 +53520,7 @@ body {
   }
 
   .md\:h-little {
-    height: 1px;
+    height: 1.85px;
   }
 
   .md\:h-px {
@@ -75045,7 +75045,7 @@ body {
   }
 
   .lg\:h-little {
-    height: 1px;
+    height: 1.85px;
   }
 
   .lg\:h-px {
@@ -96570,7 +96570,7 @@ body {
   }
 
   .xl\:h-little {
-    height: 1px;
+    height: 1.85px;
   }
 
   .xl\:h-px {

@@ -8,6 +8,7 @@ const ProductDetails = React.lazy(() => import('./pages/ProductDetails'));
 const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
 const Cart = React.lazy(() => import('./pages/Cart'));
+const Profile = React.lazy(() => import('./pages/Profile'));
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <WithHeader exact path="/product/:id" component={ProductDetails} />
           <WithHeader exact path="/cart/:id?" component={Cart} />
           <WithHeader exact path="/shipping" component={Checkout} />
+          <WithHeader path="/profile" component={Profile} />
           <Route path="/Login" component={Login} />
           <Route path="/register" component={Register} />
         </React.Suspense>

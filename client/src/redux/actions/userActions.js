@@ -73,3 +73,35 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: userTypes.userLogout });
 };
+
+export const getUserDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: userTypes.userDetailsRequest,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/users/${id}`, config);
+
+    dispatch({
+      type: userTypes.userDetailsSuccess,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: userTypes.userDetailsFailure,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

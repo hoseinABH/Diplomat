@@ -73,7 +73,7 @@ const Register = () => {
             </Message>
           )}
           <form autoComplete="off" onSubmit={handleSubmit}>
-            <InputLabel> نام کاربری </InputLabel>
+            <InputLabel> نام(نام خانوادگی) </InputLabel>
             <Input
               value={name}
               onChange={(e) => setName(e.target.value)}
