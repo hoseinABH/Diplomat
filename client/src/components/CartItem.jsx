@@ -2,13 +2,14 @@ import React from 'react';
 import stock from '../assets/images/stock.png';
 import deleteIcon from '../assets/images/delete.png';
 import quality from '../assets/images/quality.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/actions/cartActions';
 import Modal from './Modal';
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isOpen, toggleModal] = React.useState(false);
 
   return (
@@ -72,7 +73,10 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <Modal
-        onConfirm={() => dispatch(removeFromCart(item.product))}
+        onConfirm={() => {
+          dispatch(removeFromCart(item.product));
+          history.push('/cart');
+        }}
         isOpen={isOpen}
         toggleModal={toggleModal}
       >

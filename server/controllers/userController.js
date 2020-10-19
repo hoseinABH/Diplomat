@@ -6,6 +6,7 @@ const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
+
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -22,6 +23,7 @@ const authUser = asyncHandler(async (req, res) => {
 
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+
   if (user) {
     res.json({
       _id: user._id,
@@ -38,8 +40,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  const userExist = await User.findOne({ email });
-  if (userExist) {
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
     res.status(400);
     throw new Error('درحال حاضر کاربر با این مشخصات وجود دارد.');
   }

@@ -1,16 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import cart from '../assets/images/cart.svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/actions/userActions';
 
 const Header = () => {
   const [term, setTerm] = React.useState('');
   const [showNavbar, setShowNavbar] = React.useState(true);
   const [dropDown, toggleDropDown] = React.useState(false);
+  const [loggedinUser, setLoggedinUser] = React.useState(
+    JSON.parse(localStorage.getItem('userInfo'))
+  );
+
+  const history = useHistory();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (userInfo) {
+      setLoggedinUser(userInfo);
+    }
+  }, [userInfo]);
 
   React.useEffect(() => {
     let prevScrollpos = window.pageYOffset;
@@ -24,6 +38,12 @@ const Header = () => {
       prevScrollpos = currentScrollPos;
     });
   }, [setShowNavbar]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setLoggedinUser(null);
+    history.push('/');
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -50,7 +70,7 @@ const Header = () => {
             className="px-4 bg-gray-100 transition-all  duration-300 border border-transparent mr-0 sm:mr-3  rounded-lg h-10 w-full  text-sm focus:outline-none focus:border focus:bg-transparent focus:border-gray-300 focus:shadow-sm "
           />
           <nav className="flex items-center  sm:hidden mr-6">
-            {userInfo ? (
+            {loggedinUser ? (
               <div className="flex flex-col space-y-10">
                 <span className="rounded-md shadow-sm ">
                   <button
@@ -97,12 +117,13 @@ const Header = () => {
                       >
                         <p className="py-1 text-blue-600">
                           {' '}
-                          {userInfo.name && userInfo.name}
+                          {loggedinUser.name && loggedinUser.name}
                         </p>
                         مشاهده حساب کاربری
                       </Link>
 
                       <button
+                        onClick={handleLogout}
                         className="block w-full text-right px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                         role="menuitem"
                       >
@@ -131,7 +152,7 @@ const Header = () => {
         </form>
       </div>
       <nav className="hidden items-center  sm:flex">
-        {userInfo ? (
+        {loggedinUser ? (
           <div className="flex flex-col space-y-10">
             <span className="rounded-md shadow-sm ">
               <button
@@ -178,12 +199,13 @@ const Header = () => {
                   >
                     <p className="py-1 text-blue-600">
                       {' '}
-                      {userInfo.name && userInfo.name}
+                      {loggedinUser.name && loggedinUser.name}
                     </p>
                     مشاهده حساب کاربری
                   </Link>
 
                   <button
+                    onClick={handleLogout}
                     className="block w-full text-right px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                     role="menuitem"
                   >
