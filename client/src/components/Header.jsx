@@ -9,9 +9,7 @@ const Header = () => {
   const [term, setTerm] = React.useState('');
   const [showNavbar, setShowNavbar] = React.useState(true);
   const [dropDown, toggleDropDown] = React.useState(false);
-  const [loggedinUser, setLoggedinUser] = React.useState(
-    JSON.parse(localStorage.getItem('userInfo'))
-  );
+  const [loggedinUser, setLoggedinUser] = React.useState(null);
 
   const history = useHistory();
 
@@ -116,8 +114,7 @@ const Header = () => {
                         role="menuitem"
                       >
                         <p className="py-1 text-blue-600">
-                          {' '}
-                          {loggedinUser.name && loggedinUser.name}
+                          {loggedinUser.name}
                         </p>
                         مشاهده حساب کاربری
                       </Link>
@@ -197,10 +194,7 @@ const Header = () => {
                     className="block  px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                     role="menuitem"
                   >
-                    <p className="py-1 text-blue-600">
-                      {' '}
-                      {loggedinUser.name && loggedinUser.name}
-                    </p>
+                    <p className="py-1 text-blue-600"> {loggedinUser.name}</p>
                     مشاهده حساب کاربری
                   </Link>
 

@@ -3,6 +3,7 @@ import React from 'react';
 const Input = ({ name, type, value, onChange, placeHolder }) => {
   return (
     <input
+      autoComplete="off"
       type={type}
       value={value}
       name={name}

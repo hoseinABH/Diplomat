@@ -14,13 +14,14 @@ export const login = (email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       '/api/users/login',
-      {
-        email,
-        password,
-      },
+      { email, password },
       config
     );
-    dispatch({ type: userTypes.userLoginSuccess, payload: data });
+
+    dispatch({
+      type: userTypes.userLoginSuccess,
+      payload: data,
+    });
 
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
@@ -33,6 +34,7 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -47,11 +49,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       '/api/users',
-      {
-        name,
-        email,
-        password,
-      },
+      { name, email, password },
       config
     );
     dispatch({ type: userTypes.userRegisterSuccess, payload: data });
@@ -83,6 +81,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
+
     const config = {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
@@ -98,6 +97,43 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: userTypes.userDetailsFailure,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: userTypes.updateProfileRequest,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(`/api/users/profile`, user, config);
+
+    dispatch({
+      type: userTypes.updateProfileSuccess,
+      payload: data,
+    });
+    dispatch({
+      type: userTypes.userLoginSuccess,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: userTypes.updateProfileSuccess,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
