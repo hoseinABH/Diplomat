@@ -38,10 +38,8 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case userTypes.userDetailsRequest:
       return { ...state, loading: true };
-
     case userTypes.userDetailsSuccess:
       return { loading: false, user: action.payload };
-
     case userTypes.userDetailsFailure:
       return { loading: false, errors: action.payload };
 

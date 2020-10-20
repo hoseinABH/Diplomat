@@ -42,8 +42,7 @@ const Profile = () => {
     }
   }, [dispatch, history, userInfo, user]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = () => {
     if (password !== confirmPassword) {
       setMessage('کلمه عبور یکسان نیست');
       setTimeout(() => {
