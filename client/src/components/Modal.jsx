@@ -23,7 +23,7 @@ const Modal = ({ isOpen, toggleModal, onConfirm, children }) => {
         >
           <div
             onClick={() => toggleModal(false)}
-            className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+            className="flex items-center min-h-screen justify-center  pt-4 px-4 pb-20 text-center  sm:p-0"
           >
             <div className="fixed inset-0 transition-opacity">
               <div className="absolute inset-0 bg-gray-200 opacity-75"></div>

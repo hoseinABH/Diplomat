@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Message from '../components/Message';
-import Spinner from '../components/Spinner';
+import ProfileSkeleton from '../components/ProfileSkeleton';
 const Profile = () => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -18,6 +18,8 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const [message, setMessage] = React.useState(null);
   const [inputs, showInputs] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const userDetails = useSelector((state) => state.userDetails);
@@ -25,9 +27,6 @@ const Profile = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const updateProfile = useSelector((state) => state.updateProfile);
-  const { success } = updateProfile;
 
   React.useEffect(() => {
     if (!userInfo) {
@@ -40,7 +39,7 @@ const Profile = () => {
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, setName]);
 
   const submitHandler = () => {
     if (password !== confirmPassword) {
@@ -51,12 +50,13 @@ const Profile = () => {
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
       showInputs(false);
+      setSuccess(true);
     }
   };
   return (
     <Layout>
       <div className="flex items-center justify-center h-full">
-        <div className="py-2 px-auto sm:px-3 text-sm bg-white border-gray-300 rounded flex w-full flex-col mb-12 mt-8 sm:mt-32 sm:mx-6">
+        <div className="py-2 px-6 mx-4 sm:px-3 text-sm bg-white border-gray-300 rounded flex w-full flex-col mb-12 mt-8 sm:mt-32 sm:mx-6">
           {message && (
             <Message variant="Error" timer={3000}>
               {message}
@@ -78,7 +78,7 @@ const Profile = () => {
             <span className="w-20 h-little rounded opacity-75 bg-red-100"></span>
           </div>
           {loading ? (
-            <Spinner />
+            <ProfileSkeleton />
           ) : (
             <>
               <div className="w-full flex flex-col sm:flex-row mt-6">
@@ -153,7 +153,7 @@ const Profile = () => {
               ) : (
                 <div
                   onClick={() => showInputs(true)}
-                  className="flex space-x-2 items-center justify-end my-4 text-blue-600 cursor-pointer"
+                  className="flex space-x-2 items-center w-full sm:justify-start justify-center sm:w-1/6   my-4 text-blue-600 cursor-pointer"
                 >
                   <span>ویرایش اطلاعات </span>
                   <img className="w-3 h-3" src={edit} alt="edit" />

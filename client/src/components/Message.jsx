@@ -15,7 +15,7 @@ const Message = ({ variant, children, timer }) => {
   }, [alertState, setAlertState, timer]);
   return (
     <div
-      className={`flex fixed bottom-0 mb-6 w-full  sm:w-auto  z-50 transition-opacity duration-500  items-center rounded-md ${
+      className={`flex fixed bottom-0 mb-6 w-auto  z-50 transition-opacity duration-500  items-center rounded-md ${
         variant === 'Error'
           ? 'bg-yellow-200 border-yellow-300'
           : 'bg-green-200 border-green-300'
