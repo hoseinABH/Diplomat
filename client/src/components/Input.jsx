@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Input = ({ name, type, value, onChange, placeHolder }) => {
+const Input = ({ name, type, value, onChange, placeHolder, required }) => {
   return (
     <input
       autoComplete="off"
+      required={required}
       type={type}
       value={value}
       name={name}

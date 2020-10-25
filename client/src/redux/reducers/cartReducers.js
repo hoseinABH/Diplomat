@@ -1,6 +1,9 @@
 import { cartTypes } from '../types/cartTypes';
 
-export const cartReducers = (state = { cartItems: [] }, action) => {
+export const cartReducers = (
+  state = { cartItems: [], shippingAddress: {} },
+  action
+) => {
   switch (action.type) {
     case cartTypes.cartAddItem:
       const existItem = state.cartItems.find(
@@ -25,6 +28,11 @@ export const cartReducers = (state = { cartItems: [] }, action) => {
         cartItems: state.cartItems.filter(
           (item) => item.product !== action.payload
         ),
+      };
+    case cartTypes.cartSaveShippingAddress:
+      return {
+        ...state,
+        shippingAddress: action.payload,
       };
 
     default:
