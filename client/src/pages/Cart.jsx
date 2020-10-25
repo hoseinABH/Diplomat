@@ -21,6 +21,8 @@ const Cart = () => {
   }, [dispatch, id]);
   React.useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleScroll = () => {
