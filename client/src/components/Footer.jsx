@@ -91,7 +91,7 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <footer className="mt-4 sm:mt-16">
+    <footer className="mt-4 sm:mt-16 ">
       <hr />
       <div
         className="flex items-center my-4 justify-center select-none"

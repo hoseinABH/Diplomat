@@ -55,8 +55,8 @@ const Profile = () => {
   };
   return (
     <Layout>
-      <div className="flex items-center justify-center h-full">
-        <div className="py-2 px-6 mx-4 sm:px-3 text-sm bg-white border-gray-300 rounded flex w-full flex-col mb-12 mt-8 sm:mt-32 sm:mx-6">
+      <div className="flex justify-center">
+        <div className="py-2 px-6 mx-4 sm:px-3 text-sm bg-white border-gray-300 rounded flex w-full flex-col  mt-8 sm:mt-32 sm:mx-6">
           {message && (
             <Message variant="Error" timer={3000}>
               {message}
@@ -164,7 +164,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center h-full ">
+      <div className="flex  justify-center">
         <div className="py-2 px-3 text-sm bg-white border-gray-300 rounded flex w-full flex-col  mb-20 mt-8 mx-4 ">
           <div className="flex flex-col space-y-2">
             <h1 className="text-lg">آخرین سفارش ها</h1>

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Lazyloading from './LazyLoading';
 import { WithHeader } from './WithHeader';
 import ProgressBar from 'react-topbar-progress-indicator';
-
+import OrderProccessRoutes from './OrderProccessRoutes';
 ProgressBar.config({
   barColors: {
     0: '#EE384E',
@@ -11,17 +11,6 @@ ProgressBar.config({
   },
   shadowBlur: 5,
 });
-
-const Checkout = Lazyloading(
-  () => {
-    return new Promise((resolve) => {
-      setTimeout(() => resolve(import('../pages/Checkout')), 500);
-    });
-  },
-  {
-    fallback: <ProgressBar />,
-  }
-);
 
 const Home = Lazyloading(
   () => {
@@ -88,10 +77,10 @@ const Routes = () => (
     <WithHeader exact path="/" component={Home} />
     <WithHeader exact path="/product/:id" component={ProductDetails} />
     <WithHeader exact path="/cart/:id?" component={Cart} />
-    <WithHeader exact path="/shipping" component={Checkout} />
     <WithHeader path="/profile" component={Profile} />
     <Route path="/Login" component={Login} />
     <Route path="/register" component={Register} />
+    <OrderProccessRoutes />
   </>
 );
 
