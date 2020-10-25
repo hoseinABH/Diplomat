@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import Lazyloading from './LazyLoading';
 import ProgressBar from 'react-topbar-progress-indicator';
-import Steps from '../components/Steps';
+import { WithSteps } from './WithSteps';
 ProgressBar.config({
   barColors: {
     0: '#EE384E',
@@ -43,14 +42,11 @@ const PlaceOrder = Lazyloading(
 
 const OrderProccessRoutes = () => {
   return (
-    <div className="h-screen bg-white">
-      <div className="flex w-full flex-col items-center text-xs">
-        <Steps />
-        <Route exact path="/shipping" component={Shipping} />
-        <Route exact path="/payment" component={Payment} />
-        <Route exact path="/place-order" component={PlaceOrder} />
-      </div>
-    </div>
+    <>
+      <WithSteps exact path="/shipping" component={Shipping} />
+      <WithSteps exact path="/payment" component={Payment} />
+      <WithSteps exact path="/place-order" component={PlaceOrder} />
+    </>
   );
 };
 

@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import Lazyloading from './LazyLoading';
 import { WithHeader } from './WithHeader';
 import ProgressBar from 'react-topbar-progress-indicator';
-import OrderProccessRoutes from './OrderProccessRoutes';
 ProgressBar.config({
   barColors: {
     0: '#EE384E',
@@ -80,7 +79,6 @@ const Routes = () => (
     <WithHeader path="/profile" component={Profile} />
     <Route path="/Login" component={Login} />
     <Route path="/register" component={Register} />
-    <OrderProccessRoutes />
   </>
 );
 
