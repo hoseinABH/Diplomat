@@ -26,17 +26,16 @@ const Header = () => {
 
   React.useEffect(() => {
     let prevScrollpos = window.pageYOffset;
-    if (mounted) {
-      window.addEventListener('scroll', () => {
-        let currentScrollPos = window.pageYOffset;
-        if (prevScrollpos > currentScrollPos) {
-          setShowNavbar(true);
-        } else {
-          setShowNavbar(false);
-        }
-        prevScrollpos = currentScrollPos;
-      });
-    }
+
+    window.addEventListener('scroll', () => {
+      let currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(false);
+      }
+      prevScrollpos = currentScrollPos;
+    });
   }, [setShowNavbar]);
 
   const handleLogout = () => {

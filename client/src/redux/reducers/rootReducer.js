@@ -7,6 +7,7 @@ import {
   userRegisterReducer,
   updateProfileReducer,
 } from './userReducers';
+
 const rootReducer = combineReducers({
   productList: productReducer,
   productDetails: productDetailReducer,
