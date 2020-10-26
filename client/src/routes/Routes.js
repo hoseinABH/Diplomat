@@ -103,6 +103,16 @@ const PlaceOrder = Lazyloading(
     fallback: <ProgressBar />,
   }
 );
+const OrderDetails = Lazyloading(
+  () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(import('../pages/OrderDetails')), 500);
+    });
+  },
+  {
+    fallback: <ProgressBar />,
+  }
+);
 
 const Routes = () => (
   <>
@@ -115,6 +125,7 @@ const Routes = () => (
     <Route exact path="/shipping" component={Shipping} />
     <Route exact path="/payment" component={Payment} />
     <Route exact path="/place-order" component={PlaceOrder} />
+    <Route exact path="/order/:id" component={OrderDetails} />
   </>
 );
 
