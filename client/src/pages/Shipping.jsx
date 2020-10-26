@@ -5,6 +5,8 @@ import InputLabel from '../components/InputLabel';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveShippingAddress } from '../redux/actions/cartActions';
 import { useHistory } from 'react-router-dom';
+import Steps from '../components/Steps';
+
 const Shipping = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
@@ -25,41 +27,47 @@ const Shipping = () => {
   };
 
   return (
-    <form autoComplete="off" className="mt-4" onSubmit={submitHandler}>
-      <InputLabel>آدرس</InputLabel>
-      <Input
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        required
-        type="text"
-        name="address"
-      />
-      <InputLabel>شهر</InputLabel>
-      <Input
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        required
-        type="text"
-        name="city"
-      />
-      <InputLabel>کدپستی</InputLabel>
-      <Input
-        value={postalCode}
-        onChange={(e) => setPostalCode(e.target.value)}
-        required
-        type="text"
-        name="postalCode"
-      />
-      <InputLabel>کشور</InputLabel>
-      <Input
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-        required
-        type="text"
-        name="country"
-      />
-      <Button type="submit">ادامه فرآیند خرید</Button>
-    </form>
+    <div className="h-screen bg-white">
+      <div className="flex w-full flex-col items-center ">
+        <Steps step3 step4 />
+
+        <form autoComplete="off" className="mt-4" onSubmit={submitHandler}>
+          <InputLabel>آدرس</InputLabel>
+          <Input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+            type="text"
+            name="address"
+          />
+          <InputLabel>شهر</InputLabel>
+          <Input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+            type="text"
+            name="city"
+          />
+          <InputLabel>کدپستی</InputLabel>
+          <Input
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
+            required
+            type="text"
+            name="postalCode"
+          />
+          <InputLabel>کشور</InputLabel>
+          <Input
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            required
+            type="text"
+            name="country"
+          />
+          <Button type="submit">ادامه فرآیند خرید</Button>
+        </form>
+      </div>
+    </div>
   );
 };
 

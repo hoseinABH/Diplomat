@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import Lazyloading from './LazyLoading';
 import { WithHeader } from './WithHeader';
 import ProgressBar from 'react-topbar-progress-indicator';
-import OrderProccessRoutes from './OrderProccessRoutes';
 
 ProgressBar.config({
   barColors: {
@@ -73,6 +72,38 @@ const Cart = Lazyloading(
     fallback: <ProgressBar />,
   }
 );
+
+const Shipping = Lazyloading(
+  () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(import('../pages/Shipping')), 500);
+    });
+  },
+  {
+    fallback: <ProgressBar />,
+  }
+);
+const Payment = Lazyloading(
+  () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(import('../pages/Payment')), 500);
+    });
+  },
+  {
+    fallback: <ProgressBar />,
+  }
+);
+const PlaceOrder = Lazyloading(
+  () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(import('../pages/PlaceOrder')), 500);
+    });
+  },
+  {
+    fallback: <ProgressBar />,
+  }
+);
+
 const Routes = () => (
   <>
     <WithHeader exact path="/" component={Home} />
@@ -81,7 +112,9 @@ const Routes = () => (
     <WithHeader path="/profile" component={Profile} />
     <Route path="/Login" component={Login} />
     <Route path="/register" component={Register} />
-    <OrderProccessRoutes />
+    <Route exact path="/shipping" component={Shipping} />
+    <Route exact path="/payment" component={Payment} />
+    <Route exact path="/place-order" component={PlaceOrder} />
   </>
 );
 

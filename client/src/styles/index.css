@@ -8,6 +8,9 @@ body {
   @apply text-white;
   @apply bg-teal-100;
 }
+button:disabled {
+  @apply opacity-50;
+}
 @tailwind components;
 
 @tailwind utilities;

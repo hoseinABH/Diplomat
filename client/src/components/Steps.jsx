@@ -9,7 +9,7 @@ import { IconContext } from 'react-icons';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
-const Steps = () => {
+const Steps = ({ step2, step3, step4 }) => {
   const history = useHistory();
   const onRouteChange = (url) => {
     history.push(`/${url}`);
@@ -20,35 +20,38 @@ const Steps = () => {
       <Link to="/">
         <img src={logo} className="w-40 my-3" alt="logo" />
       </Link>
-      <IconContext.Provider value={{ color: '#2d3748', size: '25px' }}>
-        <div className="flex max-w-lg w-full items-center justify-center space-x-8 sm:space-x-1 sm:justify-between mt-8">
+      <IconContext.Provider value={{ color: '#33333B', size: '25px' }}>
+        <div className="flex max-w-lg w-full items-center justify-around  sm:space-x-1 sm:justify-between mt-8">
           <button
             disabled
             className="hidden sm:flex flex-col items-center space-y-3 focus:outline-none "
           >
             <FaSignInAlt />
-            ورود
+            <p>ورود</p>
           </button>
           <button
+            disabled={step2}
             onClick={() => onRouteChange('shipping')}
             className="flex flex-col items-center space-y-3 focus:outline-none"
           >
             <FaClipboardList />
-            اطلاعات ارسال
+            <p>اطلاعات ارسال</p>
           </button>
           <button
+            disabled={step3}
             onClick={() => onRouteChange('payment')}
             className="flex flex-col items-center space-y-3 focus:outline-none"
           >
             <FaCreditCard />
-            پرداخت
+            <p> پرداخت</p>
           </button>
           <button
+            disabled={step4}
             onClick={() => onRouteChange('place-order')}
             className="flex flex-col items-center space-y-3 focus:outline-none"
           >
             <FaShippingFast />
-            اتمام خرید و ارسال
+            <p>اتمام خرید</p>
           </button>
         </div>
       </IconContext.Provider>
