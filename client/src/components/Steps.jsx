@@ -22,10 +22,7 @@ const Steps = ({ step2, step3, step4 }) => {
       </Link>
       <IconContext.Provider value={{ color: '#33333B', size: '25px' }}>
         <div className="flex max-w-lg w-full items-center justify-around  sm:space-x-1 sm:justify-between mt-8">
-          <button
-            disabled
-            className="hidden sm:flex flex-col items-center space-y-3 focus:outline-none "
-          >
+          <button className="hidden sm:flex flex-col items-center space-y-3 focus:outline-none ">
             <FaSignInAlt />
             <p>ورود</p>
           </button>

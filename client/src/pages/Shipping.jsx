@@ -16,19 +16,19 @@ const Shipping = () => {
   const [postalCode, setPostalCode] = React.useState(
     shippingAddress.postalCode
   );
-  const [country, setCountry] = React.useState(shippingAddress.country);
+  const [state, setState] = React.useState(shippingAddress.state);
 
   const dispatch = useDispatch();
   const history = useHistory();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    dispatch(saveShippingAddress({ address, city, postalCode, state }));
     history.push('/payment');
   };
 
   return (
     <div className="h-screen bg-white">
-      <div className="flex w-full flex-col items-center ">
+      <div className="flex w-full flex-col items-center py-5 px-6">
         <Steps step3 step4 />
 
         <form autoComplete="off" className="mt-4" onSubmit={submitHandler}>
@@ -56,13 +56,13 @@ const Shipping = () => {
             type="text"
             name="postalCode"
           />
-          <InputLabel>کشور</InputLabel>
+          <InputLabel>استان</InputLabel>
           <Input
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            value={state}
+            onChange={(e) => setState(e.target.value)}
             required
             type="text"
-            name="country"
+            name="state"
           />
           <Button type="submit">ادامه فرآیند خرید</Button>
         </form>
