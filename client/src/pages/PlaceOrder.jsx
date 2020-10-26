@@ -1,7 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Steps from '../components/Steps';
 import SummaryItem from '../components/SummaryItem';
+import Message from '../components/Message';
+import { createOrder } from '../redux/actions/orderActions';
 
 const PlaceOrder = () => {
   const cart = useSelector((state) => state.cart);
@@ -9,17 +12,47 @@ const PlaceOrder = () => {
   const { address, city, postalCode, state } = shippingAddress;
   const totalQty = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
+  const history = useHistory();
+
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.qty * item.price, 0)
     .toFixed();
 
-  const onSubmitHandler = () => {};
+  const dispatch = useDispatch();
+
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, errors } = orderCreate;
+
+  React.useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line
+  }, [history, success]);
+  const onSubmitHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cartItems,
+        shippingAddress: shippingAddress,
+        paymentMethod: localStorage
+          .getItem('paymentMethod')
+          .replace(/['"]+/g, ''),
+        totalPrice: totalPrice,
+      })
+    );
+  };
+
   return (
     <div className="h-full bg-white ">
       <div className="flex w-full flex-col items-center ">
         <Steps />
       </div>
       <>
+        {errors && (
+          <Message variant="Error" timer={3000}>
+            {errors}
+          </Message>
+        )}
         <div className="flex flex-col md:flex-row w-full pt-8 pb-24">
           <div className="flex flex-col space-y-6 w-full md:w-4/6">
             <div className="flex flex-col justify-center space-y-3  items-start py-5 px-6">
@@ -31,7 +64,10 @@ const PlaceOrder = () => {
             </div>
             <div className="flex flex-col justify-center space-y-3 items-start py-5 px-6">
               <h4 className="text-lg font-semibold">نحوه پرداخت</h4>
-              <p>از طریق: {cart.paymentMethod}</p>
+              <p>
+                از طریق:{' '}
+                {localStorage.getItem('paymentMethod').replace(/['"]+/g, '')}
+              </p>
             </div>
             <div className="flex flex-col justify-center items-start px-6">
               <h4 className="text-lg font-semibold">سفارشات</h4>

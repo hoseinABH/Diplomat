@@ -69,7 +69,13 @@ export const register = (name, email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
+  localStorage.removeItem('cartItems');
+  localStorage.removeItem('shippingAddress');
+  localStorage.removeItem('paymentMethod');
   dispatch({ type: userTypes.userLogout });
+  dispatch({ type: userTypes.userDetailsReset });
+  dispatch({ type: userTypes.userListReset });
+  document.location.href = '/login';
 };
 
 export const getUserDetails = (id) => async (dispatch, getState) => {

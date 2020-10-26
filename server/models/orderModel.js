@@ -33,7 +33,7 @@ const orderSchema = mongoose.Schema(
         type: String,
         required: true,
       },
-      country: {
+      state: {
         type: String,
         required: true,
       },
@@ -42,7 +42,7 @@ const orderSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    paymentMethod: {
+    paymentResult: {
       id: { type: String },
       status: { type: String },
       update_time: { type: String },
@@ -50,12 +50,10 @@ const orderSchema = mongoose.Schema(
     },
     taxPrice: {
       type: Number,
-      required: true,
       default: 0.0,
     },
     shippingPrice: {
       type: Number,
-      required: true,
       default: 0.0,
     },
     totalPrice: {
