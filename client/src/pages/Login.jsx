@@ -61,7 +61,7 @@ const Login = () => {
               type="password"
               name="password"
             />
-            <Button type="submit">
+            <Button disabled={loading} type="submit">
               {loading ? 'در حال پردازش...' : 'ورود به دیپلمات'}
             </Button>
           </form>

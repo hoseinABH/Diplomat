@@ -101,7 +101,7 @@ const Register = () => {
               type="password"
               name="email"
             />
-            <Button type="submit">
+            <Button disabled={loading} type="submit">
               {loading ? 'درحال پردازش...' : 'ثبت نام در دیپلمات'}
             </Button>
           </form>

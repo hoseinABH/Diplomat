@@ -125,7 +125,7 @@ const Routes = () => (
     <Route exact path="/shipping" component={Shipping} />
     <Route exact path="/payment" component={Payment} />
     <Route exact path="/place-order" component={PlaceOrder} />
-    <Route exact path="/order/:id" component={OrderDetails} />
+    <WithHeader exact path="/order/:id" component={OrderDetails} />
   </>
 );
 
