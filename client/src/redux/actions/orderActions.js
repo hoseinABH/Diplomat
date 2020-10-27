@@ -70,3 +70,47 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
     });
   }
 };
+export const payOrder = (orderId, paymentResult) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({
+      type: orderTypes.orderPayRequest,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `/api/orders/${orderId}/pay`,
+      paymentResult,
+      config
+    );
+
+    dispatch({
+      type: orderTypes.orderPaySuccess,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout());
+    }
+    dispatch({
+      type: orderTypes.orderPayFailure,
+      payload: message,
+    });
+  }
+};

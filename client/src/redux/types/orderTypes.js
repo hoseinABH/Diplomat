@@ -7,6 +7,11 @@ export const orderTypes = {
   orderDetailsRequest: 'ORDER_DETAILS_REQUEST',
   orderDetailsSuccess: 'ORDER_DETAILS_SUCCESS',
   orderDetailsFailure: 'ORDER_DETAILS_FAILURE',
+  // Order Pay
+  orderPayRequest: 'ORDER_PAY_REQUEST',
+  orderPaySuccess: 'ORDER_PAY_SUCCESS',
+  orderPayFailure: 'ORDER_PAY_FAILURE',
+  orderPayReset: 'ORDER_PAY_RESET',
 
   //  Reset OrderList
   orderListReset: 'ORDER_LIST_RESET',
