@@ -38,9 +38,10 @@ const Cart = () => {
   };
   const totalQty = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
-  const totalPrice = cartItems
-    .reduce((acc, item) => acc + item.qty * item.price, 0)
-    .toFixed();
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  );
 
   return (
     <Layout>

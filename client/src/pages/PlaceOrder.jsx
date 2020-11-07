@@ -14,9 +14,10 @@ const PlaceOrder = () => {
 
   const history = useHistory();
 
-  const totalPrice = cartItems
-    .reduce((acc, item) => acc + item.qty * item.price, 0)
-    .toFixed();
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.qty * item.price,
+    0
+  );
 
   const dispatch = useDispatch();
 

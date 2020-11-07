@@ -1,25 +1,61 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import axios from 'axios';
+import { PayPalButton } from 'react-paypal-button-v2';
 import Message from '../components/Message';
 import SummaryItem from '../components/SummaryItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getOrderDetails } from '../redux/actions/orderActions';
+import { getOrderDetails, payOrder } from '../redux/actions/orderActions';
 import { FaCheckCircle } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
+import { orderTypes } from '../redux/types/orderTypes';
+import OrderSkeleton from '../components/OrderSkeleton';
 const OrderDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const [sdkReady, setSdkReady] = React.useState(false);
+
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, errors, loading } = orderDetails;
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
+
   React.useEffect(() => {
-    dispatch(getOrderDetails(id));
-  }, [dispatch, id]);
+    const addPayPalScript = async () => {
+      const { data: clientId } = await axios.get('/api/config/paypal');
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+
+    if (!order || successPay) {
+      dispatch({ type: orderTypes.orderPayReset });
+      dispatch(getOrderDetails(id));
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPayPalScript();
+      } else {
+        setSdkReady(true);
+      }
+    }
+  }, [dispatch, id, successPay, order]);
+
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult);
+    dispatch(payOrder(id, paymentResult));
+  };
+
   return (
     <Layout>
-      <div className="h-full bg-white mt-4 sm:mt-12 ">
+      <div className="h-full bg-white mt-4 pt-8 sm:mt-12 ">
         <>
           {errors && (
             <Message variant="Error" timer={3000}>
@@ -27,7 +63,7 @@ const OrderDetails = () => {
             </Message>
           )}
           {loading ? (
-            <p>loading...</p>
+            <OrderSkeleton />
           ) : (
             <div className="flex flex-col md:flex-row w-full pt-8 pb-24">
               <div className="flex flex-col space-y-6 w-full md:w-4/6">
@@ -36,8 +72,11 @@ const OrderDetails = () => {
                   <h4 className="text-lg font-semibold">اطلاعات فردی</h4>
                   <p>نام:{order.user.name}</p>
                   <p>
-                    ایمیل
-                    <a href={`mailto:${order.user.email}`}>
+                    ایمیل:
+                    <a
+                      className="text-blue-700 font-sans"
+                      href={`mailto:${order.user.email}`}
+                    >
                       {' '}
                       {order.user.email}
                     </a>
@@ -81,7 +120,10 @@ const OrderDetails = () => {
                       >
                         <FaCheckCircle />
                       </IconContext.Provider>
-                      <p className="m-1">پرداخت شده در{order.paidAt}</p>
+                      <p className="m-1">
+                        پرداخت شده در{' '}
+                        {new Date(order.paidAt).toLocaleString('fa-IR')}
+                      </p>
                     </div>
                   ) : (
                     <p className="text-red-600">پرداخت نشده </p>
@@ -109,6 +151,19 @@ const OrderDetails = () => {
                     <p>مبلغ قابل پرداخت</p>
                     <p> {order.totalPrice} تومان</p>
                   </div>
+                  {!order.isPaid && (
+                    <div className="w-full mt-10 ">
+                      {loadingPay && <p>درحال پردازش...</p>}
+                      {!sdkReady ? (
+                        <p>درحال پردازش...</p>
+                      ) : (
+                        <PayPalButton
+                          amount={order.totalPrice}
+                          onSuccess={successPaymentHandler}
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
