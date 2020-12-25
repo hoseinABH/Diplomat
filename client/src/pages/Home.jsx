@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../redux/actions/productActions';
+
+// components
 import Card from '../components/Card';
 import Layout from '../components/Layout';
 import Carousel from '../components/Carousel';
@@ -8,16 +8,13 @@ import AdsGif from '../components/AdsGif';
 import ConditionSection from '../components/ConditionSection';
 import CardSkeleton from '../components/CardSkeleton';
 import Message from '../components/Message';
+
+// hooks
+import { useAllProducts } from '../hooks';
+
 const Home = () => {
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
-
-  const productList = useSelector((state) => state.productList);
+  const { data: products, isLoading, error } = useAllProducts();
   const skeletonNum = [1, 2, 3, 4, 5, 6, 7, 8];
-  const { loading, errors, products } = productList;
-
   return (
     <>
       <div className="h-full  w-full flex items-start flex-col md:flex-row sm:pt-20 p-2 sm:p-0 ">
@@ -39,13 +36,13 @@ const Home = () => {
           <div className="w-24 sm:w-32 h-little hidden sm:block bg-red-100 mt-2"></div>
         </div>
 
-        {errors ? (
+        {error ? (
           <Message variant="Error" timer={3000}>
-            {errors}
+            {error}
           </Message>
         ) : (
           <div className="flex flex-row flex-wrap  mt-4 sm:mt-8  bg-white pb-16  justify-center mx-3 sm:mx-4 rounded-md">
-            {loading
+            {isLoading
               ? skeletonNum.map((item) => <CardSkeleton key={item} />)
               : products &&
                 products.map((product) => (
