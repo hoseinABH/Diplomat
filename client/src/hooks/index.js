@@ -7,3 +7,5 @@ const useAllProducts = (term) => {
 };
 
 export { useAllProducts };
+
+// test
