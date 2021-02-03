@@ -117,6 +117,7 @@ const OrderDetails = Lazyloading(
 const Routes = () => (
   <>
     <WithHeader exact path="/" component={Home} />
+    <WithHeader exact path="/search/:term" component={Home} />
     <WithHeader exact path="/product/:id" component={ProductDetails} />
     <WithHeader exact path="/cart/:id?" component={Cart} />
     <WithHeader path="/profile" component={Profile} />

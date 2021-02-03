@@ -4,8 +4,8 @@ const client = axios.create({
   baseURL: '/api',
 });
 
-async function getProducts() {
-  const { data } = await client.get('/products');
+async function getProducts(term = '') {
+  const { data } = await client.get(`/products?keyword=${term}`);
   return data;
 }
 

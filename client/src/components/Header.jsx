@@ -46,7 +46,11 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    alert(term + 'Submited');
+    if (term.trim()) {
+      history.push(`/search/${term}`);
+    } else {
+      history.push('/');
+    }
   };
   return (
     <header

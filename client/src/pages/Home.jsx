@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
 // components
 import Card from '../components/Card';
 import Layout from '../components/Layout';
@@ -13,24 +13,29 @@ import Message from '../components/Message';
 import { useAllProducts } from '../hooks';
 
 const Home = () => {
-  const { data: products, isLoading, error } = useAllProducts();
+  const { term } = useParams();
+
+  const { data: products, isLoading, error } = useAllProducts(term);
   const skeletonNum = [1, 2, 3, 4, 5, 6, 7, 8];
+
   return (
     <>
-      <div className="h-full  w-full flex items-start flex-col md:flex-row sm:pt-20 p-2 sm:p-0 ">
-        <div className="w-full md:w-2/3 p-0 md:p-2 mx-auto">
-          <Carousel />
+      {!term && (
+        <div className="h-full  w-full flex items-start flex-col md:flex-row sm:pt-20 p-2 sm:p-0 ">
+          <div className="w-full md:w-2/3 p-0 md:p-2 mx-auto">
+            <Carousel />
+          </div>
+          <ConditionSection numbers={3} />
+          <div className="w-full md:w-1/3 p-0 md:p-2 mx-auto">
+            <AdsGif />
+          </div>
         </div>
-        <ConditionSection numbers={3} />
-        <div className="w-full md:w-1/3 p-0 md:p-2 mx-auto">
-          <AdsGif />
-        </div>
-      </div>
+      )}
 
       <Layout>
         <div className="flex  px-6 flex-col flex-wrap pt-6 justify-center ">
           <h1 className="text-black font-semibold text-sm sm:text-lg">
-            آخرین محصولات
+            {term ?? 'آخرین محصولات'}
           </h1>
 
           <div className="w-24 sm:w-32 h-little hidden sm:block bg-red-100 mt-2"></div>
